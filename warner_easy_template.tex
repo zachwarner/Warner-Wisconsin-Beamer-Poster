@@ -1,0 +1,127 @@
+%This is an example .tex document for the Warner style file, adapted from the Lankton theme
+% Zach Warner, University of Wisconsin-Madison
+% 12 December 2013
+% contact: zwarner@wisc.edu
+
+% NB: I prefer the customization available by putting the style elements directly in the .tex document, but this will work for Wisconsin people looking for a quick poster.
+
+\documentclass[serif,mathserif,final]{beamer}
+\usetheme{Warner}
+\usepackage{amsmath,amsfonts,amssymb,pxfonts,eulervm,xspace}
+\usepackage{graphicx,tikz}
+\usepackage{wrapfig}
+\usepackage{textpos} 
+\usepackage{ragged2e}
+\usepackage[orientation=landscape,size=custom,width=48,height=36,scale=.6,debug]{beamerposter}
+
+%note that to change the logo in the header, you have to edit the beamerthemeWarner.sty file.
+
+
+%-- Header and footer information ----------------------------------
+\newcommand{\footleft}{PolMeth Annual Conference 2013}
+\newcommand{\footright}{zwarner@wisc.edu}
+\newcommand{\footmid}{\today}
+\title{A Wisconsin Poster Template}
+\author{Zach Warner}
+\date{\today}
+\institute{zwarner@wisc.edu} % well, that's a lie. But email makes more sense here
+%-------------------------------------------------------------------
+
+
+%-- Main Document --------------------------------------------------
+\begin{document}
+\begin{frame}{}
+  \begin{columns}[t]
+
+    %-- Column 1 ---------------------------------------------------
+    \begin{column}{0.32\linewidth}
+
+      %-- Block 1-1
+      \begin{block}{Abstract}
+        Some text. Don't worry, the white space above the first texts blocks will disappear as the columns fill up.
+      \end{block}
+
+      %-- Block 1-2
+       \begin{block}{Motivation}      
+       A great place for some ponderous questions, and perhaps a model or two. If using a model, it might get shortened due to the columns. I'd use \texttt{multiline} to make it work. 
+      \end{block}
+
+
+
+     %-- Block 1-3
+     \begin{block}{A Test}
+         Run it.
+         \begin{itemize}
+          \item<circ@1->
+          This code makes sure the colors of the circles match the color theme.
+           \item<circ@1->
+           If you change this to fit your school, you can set \texttt{fg=black} to whatever rgb coordinates you desire.
+            \item<circ@1->
+            While I'm in this list, note that the normal line break of won't work here. 
+			\item<circ@1->            
+            Instead, use \texttt{par}, a tilde, and another \texttt{par}.
+         \end{itemize}
+         One final snafu: the crest won't be where it should be whenever you compile for the first time. Always compile twice when you make adjustments to it.
+     \end{block}
+     
+     
+    \end{column}%1
+
+    %-- Column 2 ---------------------------------------------------
+    \begin{column}{0.32\linewidth}
+
+      %-- Block 2-2
+      \begin{block}{Results}
+      Put your main results, particularly attractive visual displays, here.
+       \begin{figure}[htb]
+ % \vspace{-5pt} usually a figure will leave too much white space, so use negative vspace to adjust it to your taste
+  \centering
+          \includegraphics[width=\columnwidth]{correlation.pdf}
+        \end{figure}
+        Source: \texttt{http://xkcd.com/552/}.
+      \end{block}
+
+  %-- Block 2-3
+      \begin{block}{Robustness}
+They don't think it be like it is, but it do.
+      \end{block}    
+
+    \end{column}%2
+
+    %-- Column 3 ---------------------------------------------------
+    \begin{column}{0.32\linewidth}
+
+      %-- Block 3-1
+      \begin{block}{Extensions 1}
+  This is a great place to insert tables and graphics side-by-side using \texttt{column} or \texttt{wrapfig}. Make sure you use \texttt{booktabs} for tables to make them prettier.
+      \end{block}
+
+      %-- Block 3-2
+      \begin{block}{Extensions 2}
+      One last figure, possibly just to show some interesting avenues for future research. 
+      \end{block}
+
+	%-- Block 3-3
+	 \begin{block}{Conclusion}
+	Based on the template ``Lankton'' by Shawn Lankton, available at \texttt{http://		www.shawnlankton.com/2008/06/latex-beamer- \\ poster-theme-and-template/}. \par ~ \par
+Feel free to email me questions, comments, hatemail, or thanks, if so inclined.
+      \end{block}
+
+    \end{column}
+
+  \end{columns}
+  
+%--- The crest----------------------------------------------------
+  \begin{tikzpicture}[remember picture,overlay] 
+            \node[opacity=.1, at=(current page.south west),anchor=south west,inner sep=-160pt] {
+                \includegraphics[width=.5\paperheight]{uwcrest.pdf}
+            };
+        \end{tikzpicture}
+        % higher numbers for opacity mean a brighter picture, but this can make text harder to read
+        % the anchor is the bottom left column, inner sep moves it so it bleeds off the page.
+        % adjust inner sep according to taste
+        
+        %note that the first time you compile, the crest won't be where you want it to be. Compile a second time and it should be fine.
+        
+\end{frame}
+\end{document}
