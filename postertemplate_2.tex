@@ -1,0 +1,236 @@
+\documentclass[final]{beamer}
+\setlength{\paperwidth}{48in}
+\setlength{\paperheight}{36in}
+% to ensure that it's the right size, replace the beamerposter.sty file with a US version, which can be downloaded here: https://goo.gl/u8a2Zt
+\usepackage[orientation=landscape,size=UScustom,width=48,height=36,scale=1]{beamerposter}
+\usefonttheme{serif}
+\usepackage{lmodern}
+\usepackage{exscale}
+\usepackage{amsmath,amsfonts,amsthm,amssymb,xspace,bm}
+\usepackage{graphicx,tikz}
+\usepackage{wrapfig}
+\usepackage{caption}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{ragged2e}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+
+%%% bibliography and references
+% use whatever you want, but I use biber with the following settings
+\usepackage[authordate,numbermonth=false,doi=false,isbn=false,backend=biber]{biblatex-chicago}
+\DeclareFieldFormat[article,inbook,incollection,inproceedings,patent,thesis,unpublished,misc]{title}{\mkbibquote{#1\isdot}}
+\addbibresource{full_biblio.bib}
+
+
+%-school colors
+\definecolor{wiscored}{RGB}{183,1,1} 
+\definecolor{wiscogold}{RGB}{231, 217, 193} 
+
+
+%-Defining colors and fonts-----------------
+\mode<all>
+\setbeamercolor{headline}{bg=wiscored}
+\setbeamerfont{headline}{family={\fontfamily{ptm}}}
+\setbeamercolor{footline}{bg=wiscored}
+\setbeamerfont{footline}{family={\fontfamily{ptm}}}
+\setbeamercolor{separation line}{bg=wiscored}
+\setbeamercolor{title in headline}{fg=white}
+\setbeamercolor{author in headline}{fg=white}
+\setbeamercolor{institute in headline}{fg=white}
+
+\setbeamercolor{framesubtitle}{fg=white, bg=wiscored}
+\setbeamercolor{author in head/foot}{fg=white,bg=wiscored}
+\setbeamercolor{title in head/foot}{fg=white,bg=wiscored}
+\setbeamercolor{website in footline}{fg=white,bg=wiscored}
+\setbeamercolor{email in footline}{fg=white,bg=wiscored}
+
+\setbeamercolor*{normal text}{fg=black, bg=white}
+\setbeamerfont{normal text}{size=\large}
+\setbeamercolor*{block body}{fg=black,bg=white}
+\setbeamerfont{block body}{size=\Large}
+\setbeamercolor*{block title}{fg=white,bg=wiscored}
+\setbeamerfont{block title}{series=\scshape,family={\fontfamily{ptm}},size=\huge}
+\setbeamercolor{upper separation line head}{fg=black}
+\useinnertheme{circles}
+\setbeamertemplate{itemize}[circle]
+\newenvironment{circenv}{\only{\setbeamercolor{local structure}{fg=black}}}{} %this makes it so that itemized lists have black circles, in keeping with our color theme, rather than blue trianges.
+\setbeamertemplate{bibliography item}{} % turn off bib item icons
+\renewcommand\bibfont{\normalsize} % make em smaller
+ \setbeamercolor{caption name}{fg=black} %turn off figure color
+ \setbeamerfont{caption}{size=\large}
+  \setbeamertemplate{caption}[numbered]
+
+\setbeamertemplate{navigation symbols}{}  %  turn the navigation symbols off for a poster
+
+%-Setting the template for each block of text-----------------------
+\setbeamertemplate{block begin}{
+  \begin{beamercolorbox}[leftskip=2ex,colsep*=.5ex,ht=7ex]{block title}%
+    \usebeamerfont*{block title}{\insertblocktitle}
+      \vskip.5ex
+  \end{beamercolorbox}%
+  {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
+  \usebeamerfont{block body}%
+  \begin{beamercolorbox}[colsep*=.5ex,sep=.5ex,vmode]{block body}%
+  \justifying
+    \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.5ex}\vbox{}%
+  }
+  \setbeamertemplate{block end}{
+  \end{beamercolorbox}
+}
+
+%-Setting the headline template--------------------------------
+\setbeamertemplate{headline}{
+  \leavevmode
+  \begin{beamercolorbox}[wd=\paperwidth]{headline}
+    \begin{columns}[T]
+      \begin{column}{.66\paperwidth}
+        \vskip24ex %use vskip to achieve the vertical centering you want based on logo and font sizes
+        \raggedleft
+        \usebeamercolor{title in headline}{\color{fg}}
+        \usebeamerfont{title in headline}{\bf\color{fg}{\fontsize{100}{100}\selectfont\inserttitle}\\[.5ex]}
+        \usebeamercolor{author in headline}{\color{fg}}
+        \usebeamerfont{author in headline}{\color{fg}{\fontsize{100}{100}\selectfont\insertauthor}\\[.5ex]}
+        \vskip2ex
+      \end{column}
+      \begin{column}{.34\paperwidth}
+        \vskip4ex
+       \raggedright
+        \includegraphics[height=0.1\paperwidth]{uwlogo.pdf}
+        \vspace{1pt}
+      \end{column}
+    \end{columns}
+  \end{beamercolorbox}
+
+  \begin{beamercolorbox}[wd=\paperwidth]{lower separation line head}
+    \rule{0pt}{2pt}
+  \end{beamercolorbox}
+}
+
+%-Setting the footline template-------------------------------
+\setbeamertemplate{footline}{
+  \leavevmode
+  \begin{beamercolorbox}[dp=8ex,wd=\paperwidth,ht=11ex]{author in head/foot}%
+  \begin{columns}
+    \begin{column}{.43\paperwidth}
+    \hspace{1cm}
+    \usebeamercolor{website in footline}{\color{fg} {\fontsize{64}{64}\selectfont\footleft}}
+    \end{column}
+    \begin{column}{.13\paperwidth}
+    \centering
+     \usebeamercolor{date in footline}{\color{fg} {\fontsize{64}{64}\selectfont\footmid}}
+     \end{column}
+     \begin{column}{.43\paperwidth}
+     \hfill
+    \usebeamercolor{email in footline}{\color{fg} {\fontsize{64}{64}\selectfont\footright}}
+    \hspace{1cm}
+    \end{column}
+    \end{columns}
+  \end{beamercolorbox}
+  \vskip0pt%
+  \begin{beamercolorbox}[wd=\paperwidth]{lower separation line foot}
+    \rule{0pt}{2pt}
+  \end{beamercolorbox}
+}
+
+
+
+%-- Header and footer information ----------------------------------
+\newcommand{\footleft}{Conference}
+\newcommand{\footright}{yourname@email.com}
+\newcommand{\footmid}{Date}
+\title{Your Poster Title}
+\author{Your Name}
+\date{The Date}
+\institute{yourname@email.com} 
+%-------------------------------------------------------------------
+
+
+%-- Main Document --------------------------------------------------
+\begin{document}
+\begin{frame}{}
+
+
+  \begin{columns}[t]
+
+    %-- Column 1 ---------------------------------------------------
+    \begin{column}{0.32\linewidth}
+
+      %-- Block 1-1
+      \begin{block}{Block 1}
+        Some text
+      \end{block}
+
+      %-- Block 1-2
+       \begin{block}{Block 2}      
+        A bunch more text.
+      \end{block}
+
+     %-- Block 1-3
+      \begin{block}{Block 3}
+Some math. Set the spacing locally with \texttt{
+\setlength{\abovedisplayskip}{3ex}
+\setlength{\belowdisplayskip}{3ex}}
+      \end{block}    
+
+    \end{column}%1
+
+    %-- Column 2 ---------------------------------------------------
+    \begin{column}{0.32\linewidth}      
+     
+%%% setting this title depth locally
+
+        %-- Block 2-1
+      \begin{block}{Block 1}
+ Main figure.
+\end{block}
+
+    
+        %-- Block 2-2
+      \begin{block}{Block 2}
+  Some more.
+      \end{block}
+
+
+    \end{column}%2
+
+    %-- Column 3 ---------------------------------------------------
+    \begin{column}{0.32\linewidth}
+
+      %-- Block 3-1
+      \begin{block}{Block 1}
+Some more.
+       \end{block}
+
+	%-- Block 3-2
+	 \begin{block}{Block 2}
+Finally
+      \end{block}
+
+
+  %-- Block 3-3     
+ \begin{block}{References}
+Some refs.
+%\printbibliography
+      \end{block}
+
+    \end{column}
+
+  \end{columns}
+  
+        %--- The crest----------------------------------------------------
+  \begin{tikzpicture}[remember picture,overlay] 
+            \node[opacity=.1, at=(current page.south west),anchor=south west,inner sep=-300pt] {
+                \includegraphics[width=.5\paperheight]{uwcrest.pdf}
+            };
+        \end{tikzpicture}
+        % higher numbers for opacity mean a brighter picture, but this can make text harder to read
+        % the anchor is the bottom left column, inner sep moves it so it bleeds off the page.
+        % adjust inner sep according to taste
+        
+        %note that the first time you compile, the crest won't be where you want it to be. Compile a second time and it should be fine.
+\end{frame}
+\end{document}
+
+
+
